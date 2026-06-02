@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="191.99998mm"
+   height="192mm"
+   viewBox="0 0 191.99998 192"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="layer1"
+     transform="translate(-6.389578,-47.781706)">
+    <rect
+       style="fill:#008080;stroke-width:1.19192"
+       id="rect234"
+       width="192"
+       height="192"
+       x="6.3895779"
+       y="47.781704"
+       ry="17.486853" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:91.6755px;line-height:0.75;font-family:'Courier New';-inkscape-font-specification:'Courier New Bold';fill:#ffffff;stroke-width:6.49667"
+       x="18.934851"
+       y="136.72438"
+       id="text739"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:6.49667"
+         x="18.934851"
+         y="136.72438"
+         id="tspan774">out</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:6.49667"
+         x="18.934851"
+         y="207.66933"
+         id="tspan788">bnd</tspan></text>
+  </g>
+</svg>

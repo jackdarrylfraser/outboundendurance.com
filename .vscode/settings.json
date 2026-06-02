@@ -1,0 +1,17 @@
+{
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode"
+	},
+	"editor.formatOnSave": true,
+	"explorer.excludeGitIgnore": false,
+	"explorer.fileNesting.enabled": true,
+	"explorer.fileNesting.expand": false,
+	"explorer.fileNesting.patterns": {
+		"package.json": "package-lock.json, pnpm-lock.yaml, yarn.lock, vitest.config.ts, tsconfig.json, tsconfig.base.json, next.config.*, tailwind.config.*, postcss.config.*, .eslintrc*, .prettier*, components.json, eslint.*, global.d.ts, drizzle.config*, bun.lock, next-env.d.ts, astro.config.*, svelte.config.*, pnpm-workspace.yaml, commitlint.config.js",
+		".env.example": ".env.local, .env.example, .env.production, .env.development, .env.test, .env",
+		"*.ts": "$(capture).test.ts",
+		"*.tsx": "$(capture).test.tsx",
+		".gitignore": ".gitattributes"
+	}
+}
