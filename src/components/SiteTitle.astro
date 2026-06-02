@@ -1,0 +1,41 @@
+---
+import DefaultSiteTitle from "@astrojs/starlight/components/SiteTitle.astro";
+import DefaultSearch from "@astrojs/starlight/components/Search.astro";
+import config from "virtual:starlight/user-config";
+
+const shouldRenderSearch =
+	config.pagefind ||
+	config.components.Search !== "@astrojs/starlight/components/Search.astro";
+---
+
+<div class="site-title-container sl-flex">
+	<DefaultSiteTitle {...Astro.props} />
+	<div class="search-wrapper">
+		{shouldRenderSearch && <DefaultSearch {...Astro.props} />}
+	</div>
+</div>
+
+<style>
+	.site-title-container {
+		align-items: center;
+		gap: 2rem;
+	}
+	.search-wrapper {
+		display: flex;
+		align-items: center;
+		margin-left: 1rem;
+	}
+	:global(.search-wrapper site-search button[data-open-modal]) {
+		width: 20rem !important;
+		max-width: 100% !important;
+	}
+	.pricing-link {
+		color: var(--sl-color-text);
+		text-decoration: none;
+		font-weight: 600;
+		font-size: var(--sl-text-base);
+	}
+	.pricing-link:hover {
+		color: var(--sl-color-text-accent);
+	}
+</style>

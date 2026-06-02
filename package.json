@@ -1,0 +1,32 @@
+{
+	"name": "outboundendurance.com",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"start": "astro dev",
+		"check": "astro check",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"prepare": "husky",
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@astrojs/check": "^0.9.4",
+		"@astrojs/sitemap": "^3.7.2",
+		"@astrojs/starlight": "^0.38.5",
+		"astro": "^6.2.2",
+		"typescript": "^5.8.2"
+	},
+	"devDependencies": {
+		"@astrojs/vercel": "^10.0.6",
+		"@commitlint/cli": "^21.0.1",
+		"@commitlint/config-conventional": "^21.0.1",
+		"husky": "^9.1.7",
+		"jsdom": "^29.1.1",
+		"schema-dts": "^2.0.0",
+		"vite-tsconfig-paths": "^6.1.1",
+		"vitest": "^4.1.5"
+	}
+}
