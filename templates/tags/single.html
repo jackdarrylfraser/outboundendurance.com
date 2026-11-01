@@ -2,8 +2,11 @@
 
 {% block title %}{{ term.name }} | {{ config.title }}{% endblock title %}
 
+{% block nav_back %}
+<li><a href="{{ get_url(path='tags') }}">Tags</a></li>
+{% endblock nav_back %}
+
 {% block content %}
-{% include "components/section_heading.html" %}
 {% if term.pages %}
 <ul class="post-list">
     {% set post_heading_level = 2 %}

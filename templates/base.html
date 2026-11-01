@@ -10,6 +10,14 @@
 </head>
 
 <body>
+    <nav class="site-nav" aria-label="Primary">
+        <ul class="site-nav-back">
+            {% block nav_back %}{% endblock nav_back %}
+        </ul>
+        <ul class="site-nav-explore">
+            {% block nav_explore %}{% endblock nav_explore %}
+        </ul>
+    </nav>
     <main class="site-main">
         {% block content %}{% endblock content %}
     </main>

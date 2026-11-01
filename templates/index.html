@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block nav_explore %}
+<li><a href="{{ get_url(path='tags') }}">Tags</a></li>
+{% endblock nav_explore %}
+
 {% block content %}
 {% set blog = get_section(path="blog/_index.md") %}
 <header class="section-heading">

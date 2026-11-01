@@ -31,11 +31,15 @@ a {
   }
 }
 
-.site-main {
+.site-main,
+.site-nav {
   width: calc(100% - 2rem);
   max-width: 46rem;
-  min-height: 75vh;
   margin-inline: auto;
+}
+
+.site-main {
+  min-height: 75vh;
   padding-block: 20px clamp(2.5rem, 8vw, 5rem);
 }
 
@@ -51,6 +55,40 @@ h1 {
   margin: 0;
   font-size: clamp(1.9rem, 5vw, 2.6rem);
   letter-spacing: -0.03em;
+}
+
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 0 1.5rem;
+  padding-block: 20px 1rem;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-nav-back {
+    justify-content: flex-start;
+  }
+
+  .site-nav-explore {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  .site-nav-back a::before {
+    content: "← ";
+  }
+
+  .site-nav-explore a::after {
+    content: " →";
+  }
 }
 
 .section-heading {
