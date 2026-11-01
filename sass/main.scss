@@ -4,7 +4,7 @@ $line: #000000bc;
 
 :root {
   color-scheme: light;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: ui-sans-serif, system-ui, sans-serif;
   color: $text-color;
   background: $paper;
   font-synthesis: none;
@@ -88,12 +88,6 @@ h1 {
   border-bottom: 1px solid $line;
 }
 
-.post-meta,
-.tag-list {
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.875rem;
-}
-
 .post-list {
   margin: 0;
   padding: 0;
@@ -127,6 +121,7 @@ h1 {
 .post-meta {
   display: block;
   color: $text-color;
+  font-size: 0.875rem;
 }
 
 .post-content {
@@ -163,6 +158,7 @@ h1 {
   margin: 0.9rem 0 0;
   padding: 0;
   list-style: none;
+  font-size: 0.875rem;
 
   a {
     display: inline-block;
