@@ -5,10 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}{{ config.title | default(value="Blog") }}{% endblock title %}</title>
+    <link rel="icon" href="{{ get_url(path='outbound-endurance-logo.ico') }}" type="image/x-icon" />
     <link rel="stylesheet" href="{{ get_url(path='main.css') }}" />
     {% block head %}{% endblock head %}
 </head>
-
+    
 <body>
     <nav class="site-nav" aria-label="Primary">
         <ul class="site-nav-back">
