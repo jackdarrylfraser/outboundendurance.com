@@ -77,14 +77,6 @@ h1 {
     justify-content: flex-end;
     margin-left: auto;
   }
-
-  .site-nav-back a::before {
-    content: "← ";
-  }
-
-  .site-nav-explore a::after {
-    content: " →";
-  }
 }
 
 .section-heading {

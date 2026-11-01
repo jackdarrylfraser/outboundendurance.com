@@ -3,10 +3,13 @@
 {% block title %}{{ term.name }} | {{ config.title }}{% endblock title %}
 
 {% block nav_back %}
-<li><a href="{{ get_url(path='tags') }}">Tags</a></li>
+<li><a href="{{ get_url(path='tags') }}">view all tags</a></li>
 {% endblock nav_back %}
 
 {% block content %}
+<header class="section-heading">
+    <h1>tagged '{{ term.name }}'</h1>
+</header>
 {% if term.pages %}
 <ul class="post-list">
     {% set post_heading_level = 2 %}

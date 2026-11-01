@@ -3,10 +3,13 @@
 {% block title %}{{ taxonomy.name }} | {{ config.title }}{% endblock title %}
 
 {% block nav_back %}
-<li><a href="{{ get_url(path='/') }}">Home</a></li>
+<li><a href="{{ get_url(path='/') }}">home</a></li>
 {% endblock nav_back %}
 
 {% block content %}
+<header class="section-heading">
+    <h1>tags</h1>
+</header>
 <ul class="tag-list" aria-label="Tags">
     {% for term in terms %}
     <li>
