@@ -1,0 +1,24 @@
+<ul class="post-list">
+    {% for page in posts %}
+    <li>
+        <article class="post-card">
+            <h2><a href="{{ page.permalink }}">{{ page.title | default(value=page.slug) }}</a></h2>
+            {% if page.date %}
+            <time class="post-meta" datetime="{{ page.date }}">{{ page.date | date(format="%B %-d, %Y") }}</time>
+            {% endif %}
+            {% if page.summary %}
+            <div class="post-summary">
+                {{ page.summary | safe }}
+            </div>
+            {% endif %}
+            {% if page.taxonomies.tags %}
+            <ul class="tag-list" aria-label="Tags">
+                {% for tag in page.taxonomies.tags %}
+                <li><a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </article>
+    </li>
+    {% endfor %}
+</ul>

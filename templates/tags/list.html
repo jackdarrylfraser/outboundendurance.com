@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ taxonomy.name }} | {{ config.title }}{% endblock title %}
+
+{% block content %}
+{% include "components/section_heading.html" %}
+<ul class="tag-list" aria-label="Tags">
+    {% for term in terms %}
+    <li>
+        <a href="{{ term.permalink }}">{{ term.name }} ({{ term.pages |
+            length }})</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

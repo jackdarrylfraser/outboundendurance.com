@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ term.name }} | {{ config.title }}{% endblock title %}
+
+{% block content %}
+{% include "components/section_heading.html" %}
+{% if term.pages %}
+<ul class="post-list">
+    {% set post_heading_level = 2 %}
+    {% for page in term.pages %}
+    <li>{% include "components/work_card.html" %}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No posts found for this term.</p>
+{% endif %}
+{% endblock content %}

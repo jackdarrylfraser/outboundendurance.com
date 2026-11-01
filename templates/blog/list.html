@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} | {{ config.title }}{% endblock title %}
+
+{% block content %}
+<header class="section-heading">
+    <h1>{{ section.title }}</h1>
+</header>
+{% set posts = section.pages %}
+{% include "components/post_list.html" %}
+{% endblock content %}
