@@ -1,7 +1,12 @@
-<article class="work-card">
+<article class="post-card">
     <h2><a href="{{ page.permalink }}">{{ page.title | default(value=page.slug) }}</a></h2>
     {% if page.date %}
-    <time datetime="{{ page.date }}">{{ page.date | date(format="%B %-d, %Y") }}</time>
+    <time class="post-meta" datetime="{{ page.date }}">{{ page.date | date(format="%B %-d, %Y") }}</time>
+    {% endif %}
+    {% if page.summary %}
+    <div class="post-summary">
+        {{ page.summary | safe }}
+    </div>
     {% endif %}
     {% if page.taxonomies.tags %}
     <ul class="tag-list" aria-label="Tags">

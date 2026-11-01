@@ -8,7 +8,7 @@
 <ul class="post-list">
     {% set post_heading_level = 2 %}
     {% for page in term.pages %}
-    <li>{% include "components/work_card.html" %}</li>
+    <li>{% include "components/post_card.html" %}</li>
     {% endfor %}
 </ul>
 {% else %}
