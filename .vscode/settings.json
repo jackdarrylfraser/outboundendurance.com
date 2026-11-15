@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "git.branchProtection": ["main", "master"],
+  "git.branchProtectionPrompt": "alwaysPrompt"
+}

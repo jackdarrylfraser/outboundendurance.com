@@ -1,0 +1,51 @@
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
+
+export const env = createEnv({
+  shared: {
+    NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+  },
+  server: {
+    STRIPE_SECRET_KEY: z.string().min(1),
+    STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    STRIPE_PAYMENT_METHOD_PORTAL_CONFIGURATION_ID: z
+      .string()
+      .trim()
+      .min(1)
+      .optional(),
+    VERCEL_WEBHOOK_SECRET: z.string().trim().min(1).optional(),
+    VERCEL_WEBHOOK_PROJECT_ID: z.string().trim().min(1).optional(),
+    BETTER_AUTH_SECRET: z.string().min(32),
+    BETTER_AUTH_URL: z.url(),
+    TURSO_DATABASE_URL: z.string().trim().min(1),
+    TURSO_AUTH_TOKEN: z.string().min(1),
+    UPSTASH_REDIS_REST_URL: z.url().optional(),
+    UPSTASH_REDIS_REST_TOKEN: z.string().min(1).optional(),
+    RESEND_API_KEY: z.string().min(1),
+    RESEND_FROM_EMAIL: z.string().trim().min(1).optional(),
+    DEV_AUTH_BYPASS: z.enum(["true", "false"]).optional().default("false"),
+    PUBLIC_ONLY_MODE: z.enum(["true", "false"]).optional().default("false"),
+  },
+  client: {
+  },
+  runtimeEnv: {
+    NODE_ENV: process.env.NODE_ENV,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    STRIPE_PAYMENT_METHOD_PORTAL_CONFIGURATION_ID:
+      process.env.STRIPE_PAYMENT_METHOD_PORTAL_CONFIGURATION_ID,
+    VERCEL_WEBHOOK_SECRET: process.env.VERCEL_WEBHOOK_SECRET,
+    VERCEL_WEBHOOK_PROJECT_ID: process.env.VERCEL_WEBHOOK_PROJECT_ID,
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+    TURSO_DATABASE_URL: process.env.TURSO_DATABASE_URL,
+    TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
+    UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
+    UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL,
+    DEV_AUTH_BYPASS: process.env.DEV_AUTH_BYPASS,
+    PUBLIC_ONLY_MODE: process.env.PUBLIC_ONLY_MODE,
+  },
+  emptyStringAsUndefined: true,
+});

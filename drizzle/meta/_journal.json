@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1794696738418,
+      "tag": "0000_smart_vertigo",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1794716388731,
+      "tag": "0001_legal_mockingbird",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1794717074571,
+      "tag": "0002_elite_toad_men",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1794721097157,
+      "tag": "0003_awesome_the_anarchist",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1794777755726,
+      "tag": "0004_green_captain_universe",
+      "breakpoints": true
+    }
+  ]
+}

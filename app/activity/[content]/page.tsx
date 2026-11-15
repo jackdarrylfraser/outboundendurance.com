@@ -1,0 +1,62 @@
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { join } from "node:path";
+import { isDevAuthBypassEnabled } from "@/lib/auth";
+import ActivityCard from "@/components/activity-card";
+import {
+  getMarkdownMetadata,
+  getMarkdownParamsWithMetadata,
+  renderMarkdown,
+} from "@/lib/markdown-content";
+import { requirePaidSubscription } from "@/lib/server-access";
+
+const activityDirectory = join(process.cwd(), "content", "self-guided");
+
+export async function generateStaticParams() {
+  const pages = await getMarkdownParamsWithMetadata(
+    activityDirectory,
+    "content",
+  );
+  return pages.map(({ content }) => ({ content }));
+}
+
+async function PermissionedActivityPage({
+  params,
+}: {
+  params: Promise<{ content: string }>;
+}) {
+  const { content: slug } = await params;
+  if (!isDevAuthBypassEnabled) {
+    await requirePaidSubscription(`/activity/${encodeURIComponent(slug)}`);
+  }
+
+  const renderedContent = await renderMarkdown(activityDirectory, slug);
+  if (renderedContent === null) {
+    notFound();
+  }
+  const metadata = await getMarkdownMetadata(activityDirectory, slug);
+
+  return (
+    <main className="markdown-page">
+      <div className="activity-detail-card">
+        <ActivityCard {...metadata} slug={slug} isCurrent />
+      </div>
+      <article
+        className="markdown-content activity-content"
+        dangerouslySetInnerHTML={{ __html: renderedContent }}
+      />
+    </main>
+  );
+}
+
+export default function ActivityPage({
+  params,
+}: {
+  params: Promise<{ content: string }>;
+}) {
+  return (
+    <Suspense fallback={<main className="loading-page">Loading activity...</main>}>
+      <PermissionedActivityPage params={params} />
+    </Suspense>
+  );
+}

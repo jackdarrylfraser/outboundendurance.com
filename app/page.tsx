@@ -1,0 +1,136 @@
+import Link from "next/link";
+import { join } from "node:path";
+import { Suspense } from "react";
+import { redirect } from "next/navigation";
+import ActivityCard from "@/components/activity-card";
+import { isDevAuthBypassEnabled, isPublicOnlyMode } from "@/lib/auth";
+import { getMarkdownParamsWithMetadata } from "@/lib/markdown-content";
+import { getCurrentUser } from "@/lib/server-access";
+import { hasStripeAccess } from "@/lib/stripe/stripe-access";
+
+const activityDirectory = join(process.cwd(), "content", "self-guided");
+const activitiesPerPage = 5;
+
+export default function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string | string[] }>;
+}) {
+  if (isPublicOnlyMode) {
+    redirect("/public");
+  }
+
+  return (
+    <Suspense
+      fallback={<main className="loading-page">Loading activities...</main>}
+    >
+      <HomeContent searchParams={searchParams} />
+    </Suspense>
+  );
+}
+
+async function HomeContent({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string | string[] }>;
+}) {
+  const current =
+    isDevAuthBypassEnabled ? null : await getCurrentUser();
+  const canViewActivities =
+    isDevAuthBypassEnabled ||
+    (current !== null &&
+      (await hasStripeAccess(current.id)));
+  if (canViewActivities) {
+    const { page: pageParam } = await searchParams;
+    const requestedPage =
+      typeof pageParam === "string" ? Number(pageParam) : Number.NaN;
+    const activities = await getMarkdownParamsWithMetadata(
+      activityDirectory,
+      "content",
+    );
+    const pageCount = Math.max(
+      1,
+      Math.ceil(activities.length / activitiesPerPage),
+    );
+    const currentPage = Number.isSafeInteger(requestedPage)
+      ? Math.min(pageCount, Math.max(1, requestedPage))
+      : 1;
+    const pageActivities = activities.slice(
+      (currentPage - 1) * activitiesPerPage,
+      currentPage * activitiesPerPage,
+    );
+    const firstActivity = (currentPage - 1) * activitiesPerPage + 1;
+    const lastActivity = Math.min(
+      currentPage * activitiesPerPage,
+      activities.length,
+    );
+
+    return (
+      <main className="activity-home">
+        <div className="activity-heading">
+          <p className="eyebrow">YOUR MEMBERSHIP</p>
+          <h1>Your activities.</h1>
+          <p>Explore the latest activities included with your membership.</p>
+        </div>
+        <div className="activity-list-container">
+          {pageActivities.length > 0 ? (
+            <>
+              <p className="activity-count">
+                Showing {firstActivity}-{lastActivity} of {activities.length}{" "}
+                {activities.length === 1 ? "activity" : "activities"}
+              </p>
+              <ul className="activity-list">
+                {pageActivities.map((activity) => (
+                  <li key={activity.content}>
+                    <ActivityCard
+                      slug={activity.content}
+                      title={activity.title}
+                      description={activity.description}
+                      tags={activity.tags}
+                    />
+                  </li>
+                ))}
+              </ul>
+              {pageCount > 1 && (
+                <nav
+                  className="activity-pagination"
+                  aria-label="Activity pages"
+                >
+                  {currentPage > 1 ? (
+                    <Link href={`/?page=${currentPage - 1}`}>Previous</Link>
+                  ) : (
+                    <span aria-disabled="true">Previous</span>
+                  )}
+                  <span aria-current="page">
+                    Page {currentPage} of {pageCount}
+                  </span>
+                  {currentPage < pageCount ? (
+                    <Link href={`/?page=${currentPage + 1}`}>Next</Link>
+                  ) : (
+                    <span aria-disabled="true">Next</span>
+                  )}
+                </nav>
+              )}
+            </>
+          ) : (
+            <p className="activity-empty">No activities are available yet.</p>
+          )}
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className="intro home-intro">
+      <h1>
+        Nutrition & Recovery
+        <br />
+        <em>made simple</em>
+      </h1>
+      <p>Find the membership that works for you.</p>
+      <Link href="/subscribe/plan" className="home-cta">
+        Explore membership options <span aria-hidden="true">→</span>
+      </Link>
+    </main>
+  );
+}
