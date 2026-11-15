@@ -3,7 +3,9 @@ import { z } from "zod";
 
 export const env = createEnv({
   shared: {
-    NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+    NODE_ENV: z
+      .enum(["development", "test", "production"])
+      .default("development"),
   },
   server: {
     STRIPE_SECRET_KEY: z.string().min(1),
@@ -26,8 +28,7 @@ export const env = createEnv({
     DEV_AUTH_BYPASS: z.enum(["true", "false"]).optional().default("false"),
     PUBLIC_ONLY_MODE: z.enum(["true", "false"]).optional().default("false"),
   },
-  client: {
-  },
+  client: {},
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
