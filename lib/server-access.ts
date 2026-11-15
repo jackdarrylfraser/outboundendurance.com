@@ -58,7 +58,7 @@ export async function requirePaidSubscription(
 
 export function createSubscriptionRequiredRedirect(): Response {
   return Response.redirect(
-    new URL("/subscribe/plan?required=true", env.BETTER_AUTH_URL),
+    new URL("/subscribe/plan?required=true", env.APP_URL),
     303,
   );
 }

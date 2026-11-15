@@ -29,7 +29,7 @@ export async function POST(request: Request): Promise<Response> {
   if (
     !isStripeRequestOriginAllowed(
       request.headers.get("origin"),
-      env.BETTER_AUTH_URL,
+      env.APP_URL,
     )
   ) {
     return Response.json({ error: "Request origin is not allowed." }, { status: 403 });

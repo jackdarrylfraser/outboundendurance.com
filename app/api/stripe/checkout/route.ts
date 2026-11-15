@@ -10,7 +10,7 @@ export async function POST(request: Request): Promise<Response> {
   if (
     !isStripeRequestOriginAllowed(
       request.headers.get("origin"),
-      env.BETTER_AUTH_URL,
+      env.APP_URL,
     )
   ) {
     return Response.json({ error: "Request origin is not allowed." }, { status: 403 });
@@ -66,8 +66,8 @@ export async function POST(request: Request): Promise<Response> {
       client_reference_id: currentUser.id,
       metadata: { appUserId: currentUser.id },
       subscription_data: { metadata: { appUserId: currentUser.id } },
-      success_url: `${new URL("/subscribe/success", env.BETTER_AUTH_URL).toString()}?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: new URL("/subscribe/payment", env.BETTER_AUTH_URL).toString(),
+      success_url: `${new URL("/subscribe/success", env.APP_URL).toString()}?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: new URL("/subscribe/payment", env.APP_URL).toString(),
       ...(customerId ? { customer: customerId } : {}),
     });
 

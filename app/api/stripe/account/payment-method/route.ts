@@ -20,7 +20,7 @@ export async function POST(request: Request): Promise<Response> {
   if (
     !isStripeRequestOriginAllowed(
       request.headers.get("origin"),
-      env.BETTER_AUTH_URL,
+      env.APP_URL,
     )
   ) {
     return Response.json({ error: "Request origin is not allowed." }, { status: 403 });
@@ -96,7 +96,7 @@ export async function POST(request: Request): Promise<Response> {
     const session = await stripe.billingPortal.sessions.create({
       customer: parsed.data.customerId,
       configuration: env.STRIPE_PAYMENT_METHOD_PORTAL_CONFIGURATION_ID,
-      return_url: new URL("/account", env.BETTER_AUTH_URL).toString(),
+      return_url: new URL("/account", env.APP_URL).toString(),
     });
 
     return Response.json({ url: session.url });

@@ -93,7 +93,7 @@ for production. Never commit real values.
 | `VERCEL_WEBHOOK_SECRET` | Optional signing secret for the Vercel production-promotion webhook |
 | `VERCEL_WEBHOOK_PROJECT_ID` | Vercel project ID allowed to trigger old-Price cleanup |
 | `BETTER_AUTH_SECRET` | Better Auth session signing; use a random secret of at least 32 characters |
-| `BETTER_AUTH_URL` | Better Auth application URL, such as `http://localhost:3000` |
+| `APP_URL` | Application base URL used by Better Auth and Stripe redirects, such as `http://localhost:3000` |
 | `RESEND_API_KEY` | Resend contact, event, and transactional email APIs; required to run/build the app |
 | `TURSO_DATABASE_URL` and `TURSO_AUTH_TOKEN` | Turso database used by Drizzle and Better Auth |
 | `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` | Contact rate limiting and idempotency for contact/subscription events; both must be set |

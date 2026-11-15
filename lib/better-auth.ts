@@ -16,7 +16,7 @@ import { leadEmailOTP } from "./lead/lead-email-otp-plugin";
 
 export const auth = betterAuth({
   appName: "Outbound Endurance",
-  baseURL: env.BETTER_AUTH_URL,
+  baseURL: env.APP_URL,
   secret: env.BETTER_AUTH_SECRET,
   database: drizzleAdapter(getDb(), {
     provider: "sqlite",
