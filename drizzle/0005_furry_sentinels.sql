@@ -1,0 +1,1 @@
+DROP TABLE `public_only_state`;

@@ -5,7 +5,6 @@ import {
   getIpRateLimitIdentifier,
 } from "@outbound-endurance/kv";
 import { env } from "@/env";
-import { isPublicOnlyMode } from "@/lib/auth";
 import { getRedisClient } from "@/lib/kv";
 import { sendMarketingOptInEvent } from "@/emails/automations/events";
 import { isMarketingTopicKey } from "@/lib/marketing-topics";
@@ -26,16 +25,6 @@ const contactSchema = z.object({
 });
 
 export async function POST(request: Request): Promise<Response> {
-  if (isPublicOnlyMode) {
-    return Response.json(
-      {
-        error:
-          "Contact submissions are disabled while the site is public-only.",
-      },
-      { status: 403 },
-    );
-  }
-
   const rateLimitResult = await checkContactRateLimit(request);
   const submissionResult = await parseContactSubmission(
     request,
